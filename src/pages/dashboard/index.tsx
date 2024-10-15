@@ -24,24 +24,42 @@ interface HomeProps {
   }
 }
 
+interface TaskProps {
+  id: string;
+  created: Date;
+  public: boolean;
+  tarefa: string;
+  user: string;
+}
+
 export default function Dashboard({ user }: HomeProps) {
   const [input, setInput] = useState("");
   const [publicTask, setPublicTask] = useState(false);
+  const [tasks, setTasks] = useState<TaskProps[]>([])
 
   useEffect(() => {
-    async function loadTarefas() {
-      const tarefasRef = collection(db, "tarefas")
-      const q = query(
-        tarefasRef,
-        orderBy("created", "desc"),
-        where("user", "==", user?.email)
-      )
+    if (!user?.email) return;
 
-  onSnapshot(q, (snapshot) => {
-    console.log(snapshot)
-  })
+    const tarefasRef = collection(db, "tarefas")
+    const q = query(
+      tarefasRef,
+      orderBy("created", "desc"),
+      where("user", "==", user.email)
+    )
 
-    }
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const arr = snapshot.docs.map(doc => ({
+        id: doc.id,
+        tarefa: doc.data().tarefa,
+        created: doc.data().created,
+        user: doc.data().user,
+        public: doc.data().public,
+      } as TaskProps));
+
+      setTasks(arr);
+    });
+
+    return () => unsubscribe();
   }, [user?.email])
 
   function handleChangePublic(event: ChangeEvent<HTMLInputElement>) {
@@ -65,7 +83,7 @@ export default function Dashboard({ user }: HomeProps) {
       setPublicTask(false);
 
     } catch(err) {
-      console.log(err)
+      console.error("Error adding document: ", err);
     }
   }
 
@@ -108,21 +126,24 @@ export default function Dashboard({ user }: HomeProps) {
         <section className={styles.taskContainer}>
           <h1>Minhas tarefas</h1>
 
-          <article className={styles.task}>
-            <div className={styles.tagContainer}>
-              <label className={styles.tag}>PUBLICO</label>
-              <button className={styles.shareButton}>
-                <Forward size={22} color="#3183ff" />
-              </button>
-            </div>
-
-            <div className={styles.taskContent}>
-              <p>Minha primeira tarefa de exemplo!</p>
-              <button className={styles.trashButton}>
-                <Trash size={24} color="#ea3140" />
-              </button>
-            </div>
-          </article>
+         {tasks.map((item) => (
+           <article key={item.id} className={styles.task}>
+            {item.public && (
+              <div className={styles.tagContainer}>
+                <label className={styles.tag}>PUBLICO</label>
+                <button className={styles.shareButton}>
+                  <Forward size={22} color="#3183ff" />
+                </button>
+              </div>
+            )}
+           <div className={styles.taskContent}>
+             <p>{item.tarefa}</p>
+             <button className={styles.trashButton}>
+               <Trash size={24} color="#ea3140" />
+             </button>
+           </div>
+         </article>
+        ))}
         </section>
       </main>
     </div>
