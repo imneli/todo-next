@@ -11,7 +11,9 @@ import {
   query,
   orderBy,
   where,
-  onSnapshot } from "firebase/firestore";
+  onSnapshot,
+  doc,
+  deleteDoc, } from "firebase/firestore";
 
 import Link from "next/link"
 
@@ -93,6 +95,12 @@ export default function Dashboard({ user }: HomeProps) {
     await navigator.clipboard.writeText(
       `${process.env.NEXT_PUBLIC_URL}/task/${id}`
     )
+    alert("Url copiada!")
+  }
+
+  async function handleDeleteTask(id: string) {
+    const docRef = doc(db, "tarefas", id)
+    await deleteDoc(docRef)
   }
 
   return (
@@ -152,7 +160,7 @@ export default function Dashboard({ user }: HomeProps) {
              ) : (
               <p>{item.tarefa}</p>
             )}
-             <button className={styles.trashButton}>
+             <button onClick={() => handleDeleteTask(item.id)} className={styles.trashButton}>
                <Trash size={24} color="#ea3140" />
              </button>
            </div>
