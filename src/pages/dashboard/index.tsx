@@ -1,11 +1,17 @@
 import { GetServerSideProps } from "next";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Head from "next/head";
 
 import { db } from '@/services/firebaseConnection'
 
-import { addDoc, collection } from "firebase/firestore";
+import { 
+  addDoc,
+  collection,
+  query,
+  orderBy,
+  where,
+  onSnapshot } from "firebase/firestore";
 
 import { getSession } from "next-auth/react";
 import { Textarea } from "@/components/TextArea";
@@ -21,6 +27,22 @@ interface HomeProps {
 export default function Dashboard({ user }: HomeProps) {
   const [input, setInput] = useState("");
   const [publicTask, setPublicTask] = useState(false);
+
+  useEffect(() => {
+    async function loadTarefas() {
+      const tarefasRef = collection(db, "tarefas")
+      const q = query(
+        tarefasRef,
+        orderBy("created", "desc"),
+        where("user", "==", user?.email)
+      )
+
+  onSnapshot(q, (snapshot) => {
+    console.log(snapshot)
+  })
+
+    }
+  }, [user?.email])
 
   function handleChangePublic(event: ChangeEvent<HTMLInputElement>) {
     setPublicTask(event.target.checked);
