@@ -96,7 +96,7 @@ export default function Dashboard({ user }: HomeProps) {
       `${process.env.NEXT_PUBLIC_URL}/task/${id}`
     )
     alert("Url copiada!")
-  }
+  } 
 
   async function handleDeleteTask(id: string) {
     const docRef = doc(db, "tarefas", id)

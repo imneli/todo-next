@@ -1,143 +1,143 @@
 .header {
-    width: 100%;
-    height: 80px;
-    background-color: #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 80px;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  padding: 0 24px;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content a {
+  text-decoration: none;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #00ff00;
+  padding-left: 2px;
+}
+
+.loginButton {
+  background: transparent;
+  padding: 10px 24px;
+  border-radius: 4px;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.loginButton:hover {
+  background-color: #00ff00;
+  color: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin: 0 12px;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  background-color: #3a3a3a;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 16px 0;
   }
   
   .content {
-    padding: 0 24px;
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .content a {
-    text-decoration: none;
-  }
-  
-  .logo {
-    color: #ffffff;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  
-  .logo span {
-    color: #00ff00;
-    padding-left: 2px;
-  }
-  
-  .loginButton {
-    background: transparent;
-    padding: 10px 24px;
-    border-radius: 4px;
-    color: #00ff00;
-    border: 2px solid #00ff00;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .loginButton:hover {
-    background-color: #00ff00;
-    color: #1a1a1a;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .nav {
-    display: flex;
-    align-items: center;
+    margin-top: 16px;
+    flex-wrap: wrap;
   }
   
   .link {
-    background-color: #2a2a2a;
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin: 0 12px;
-    transition: all 0.3s ease;
+    margin: 8px 8px 8px 0;
   }
-  
-  .link:hover {
-    background-color: #3a3a3a;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  }
-  
-  @media (max-width: 768px) {
-    .header {
-      height: auto;
-      padding: 16px 0;
-    }
-    
-    .content {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .nav {
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-    
-    .link {
-      margin: 8px 8px 8px 0;
-    }
-  }
+}
 
+.userProfileButton {
+  display: flex;
+  align-items: center;
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 50px;
+  padding: 6px 16px 6px 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.userProfileButton:hover {
+  background-color: #ff3366;
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+}
+
+.userImage {
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.userName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+@media (max-width: 480px) {
   .userProfileButton {
-    display: flex;
-    align-items: center;
-    background-color: #1e1e1e;
-    border: none;
-    border-radius: 50px;
-    padding: 6px 16px 6px 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #ffffff;
-    font-weight: 600;
-  }
-  
-  .userProfileButton:hover {
-    background-color: #ff3366;
-    box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
-  }
-  
-  .userImage {
-    border-radius: 50%;
-    margin-right: 8px;
-  }
-  
-  .userName {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150px;
-  }
-  
-  @media (max-width: 480px) {
-    .userProfileButton {
-      padding: 4px 12px 4px 4px;
-    }
-  
-    .userImage {
-      width: 24px;
-      height: 24px;
-    }
-  
-    .userName {
-      font-size: 14px;
-      max-width: 100px;
-    }
+    padding: 4px 12px 4px 4px;
   }
 
-  .boxButtons > button {
-    margin: 1rem;
+  .userImage {
+    width: 24px;
+    height: 24px;
   }
+
+  .userName {
+    font-size: 14px;
+    max-width: 100px;
+  }
+}
+
+.boxButtons > button {
+  margin: 1rem;
+}
