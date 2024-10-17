@@ -1,40 +1,132 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Gerenciamento de Tarefas
 
-## Getting Started
+## 📝 Sobre o Projeto
 
-First, run the development server:
+Este é um sistema de gerenciamento de tarefas desenvolvido com Next.js e Firebase, permitindo que usuários criem, organizem e acompanhem suas tarefas diárias. O sistema conta com autenticação via Google e funcionalidades em tempo real.
 
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js 14** - Framework React com SSR
+- **Firebase** - Backend e Autenticação
+- **TypeScript** - Linguagem de programação
+- **NextAuth** - Sistema de autenticação
+- **CSS Modules** - Estilização
+- **Google Auth** - Autenticação com Google
+
+## ✨ Funcionalidades
+
+- ✅ Autenticação com Google
+- 📱 Design Responsivo
+- 💾 Armazenamento em tempo real com Firebase
+- 🔒 Proteção de rotas
+- 📋 CRUD completo de tarefas
+- 💬 Sistema de comentários
+- 🎨 Interface moderna e intuitiva
+
+## 📦 Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Uma conta no Firebase
+- Uma conta Google Cloud Platform para autenticação
+
+## 🔧 Instalação
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/imneli/todo-next.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Acesse a pasta do projeto:
+```bash
+cd todo-next
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Instale as dependências:
+```bash
+npm install
+# ou
+yarn install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Configure as variáveis de ambiente:
+Crie um arquivo `.env.local` na raiz do projeto e adicione as seguintes variáveis:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```env
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=sua_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=seu_app_id
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Google Auth
+GOOGLE_CLIENT_ID=seu_client_id
+GOOGLE_CLIENT_SECRET=seu_client_secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=sua_secret_key
+```
 
-## Learn More
+5. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+# ou
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🏗️ Estrutura do Projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+todo-next/
+├── public/
+│   └── assets/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   └── styles/
+├── .env.local
+└── package.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📱 Layout Responsivo
 
-## Deploy on Vercel
+O sistema é totalmente responsivo, adaptando-se a diferentes tamanhos de tela:
+- Desktop: Layout completo com sidebar
+- Tablet: Menu hamburguer e layout adaptado
+- Mobile: Interface otimizada para telas pequenas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔐 Autenticação
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+O sistema utiliza autenticação via Google através do NextAuth.js, garantindo:
+- Login seguro
+- Persistência de sessão
+- Proteção de rotas
+- Gestão de estado do usuário
+
+## 🎯 Funcionalidades Principais
+
+### Gestão de Tarefas
+- Criar novas tarefas
+- Editar tarefas existentes
+- Marcar tarefas como concluídas
+- Excluir tarefas
+- Filtrar tarefas
+
+### Sistema de Comentários
+- Adicionar comentários às tarefas
+- Visualizar comentários de outros usuários
+- Interagir com comentários
+
+## 🤝 Como Contribuir
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 👨‍💻 Autor
+
+Imneli - [GitHub](https://github.com/imneli)
