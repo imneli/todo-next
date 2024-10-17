@@ -4,7 +4,17 @@ import { GetServerSideProps } from 'next'
 import { db } from '@/services/firebaseConnection'
 import { doc, collection, query, where, getDoc } from 'firebase/firestore'
 
-export default function Task() {
+interface TaskProps {
+    item: {
+        tarefa: string;
+        public: boolean;
+        created: string,
+        user: string,
+        taskId: string,
+    }
+}
+
+export default function Task( { item }: TaskProps) {
     return(
         <>
         <div className={styles.container}>
@@ -56,6 +66,8 @@ export const getServerSideProps: GetServerSideProps = async({ params }) => {
     }
 
     return {
-        props: {}
+        props: {
+            item: task,
+        }
     }
 }
