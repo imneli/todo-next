@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { db } from '@/services/firebaseConnection'
-import { doc, getDoc, addDoc, collection, where, query, getDocs } from 'firebase/firestore'
+import { doc, getDoc, addDoc, collection, where, query, getDocs, deleteDoc } from 'firebase/firestore'
 import { Calendar, User, Globe, Key, Trash } from 'lucide-react'
 import styles from './styles.module.css'
 import { Textarea } from '@/components/TextArea'
@@ -48,7 +48,32 @@ export default function Task({ item, allComments }: TaskProps) {
                 taskId: item?.taskId
             })
 
+            const data = {
+                id: docRef.id,
+                comment: input,
+                user: session?.user?.email,
+                name: session?.user?.name,
+                taskId: item?.taskId
+            }
+
+
+            setComments((oldItems) => [...oldItems, data])
+
             setInput("")
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
+    async function handleDeleteComment(id: string) {
+        try {
+            const docRef = doc(db, "comments", id)
+            await deleteDoc(docRef);
+
+            const deleteComment = comments.filter((item) => item.id !== id)
+
+            setComments(deleteComment)
+
         } catch(err) {
             console.log(err)
         }
@@ -121,7 +146,15 @@ export default function Task({ item, allComments }: TaskProps) {
                             <div className={styles.headComment}>
                                 <label className={styles.commentsLabel}>{item.name}</label>
                                 {item.user === session?.user?.email && (
-                                    <button className={styles.buttonTrash}><Trash size={18} color='#EA3140'/></button>
+                                    <button 
+                                    className={styles.buttonTrash}>
+                                    <Trash 
+                                      size={18} 
+                                      color='#EA3140' 
+                                      onClick={() => handleDeleteComment(item.id)} 
+                                    />
+                                  </button>
+                                  
                                 )}
                             </div>
                             <p className={styles.commentsValue}>{item.comment}</p>
