@@ -3,7 +3,7 @@ import styles from '@/styles/homeStyles.module.css'
 import Head from "next/head";
 import Image from "next/image";
 import localFont from "next/font/local";
-import HeroImage from '../../public/assets/hero.png';
+import HeroImage from '../../public/assets/code.png';
 import { GetStaticProps } from "next";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebaseConnection";
