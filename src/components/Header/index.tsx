@@ -32,9 +32,6 @@ export function Header() {
           <button className={styles.loginButton} onClick={ () => signOut()}>
             Olá {session?.user?.name}
           </button>
-          <button className={styles.loginButton} onClick={ () => signOut()}>
-          Sair
-        </button>
         </div>
         </>
         ) : (

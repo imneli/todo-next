@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { db } from '@/services/firebaseConnection'
@@ -17,6 +20,9 @@ interface TaskProps {
 }
 
 export default function Task({ item }: TaskProps) {
+
+    const { data: session } = useSession(); 
+
     return (
         <>
             <Head>
@@ -61,10 +67,8 @@ export default function Task({ item }: TaskProps) {
                 <h2 className={styles.comentariosTitle}>Deixar comentários</h2>
 
                 <form>
-                    <Textarea
-                    placeholder='Digite seu comentário...'
-                    />
-                    <button className={styles.button}>Comentar</button>
+                    <Textarea placeholder='Digite seu comentário...'/>
+                    <button disabled={!session?.user} className={styles.button}>Comentar</button>
                 </form>
                 </section>
             </div>
