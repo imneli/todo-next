@@ -137,3 +137,38 @@
 .comentariosTitle {
     margin-bottom: 1rem;
 }
+
+.comment {
+    border: 1px solid #ddd;
+    padding: 14px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.headComment {
+    display: flex;
+    align-items: center;
+}
+
+.commentsLabel {
+    font-weight: 600;
+    background-color: #e0e0e0;
+    padding: 4px 1.3rem;
+    margin-right: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.buttonTrash {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.commentsValue {
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+}
+
+.allCommentsStyle {
+    margin-bottom: 1rem;
+}
